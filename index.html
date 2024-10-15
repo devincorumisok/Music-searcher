@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Music searcher</title>
+    <title>Music Searcher</title>
     <style>
         body {
             background-color: #FFC0CB; /* Light pink background */
@@ -45,6 +45,7 @@
             cursor: pointer;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Subtle shadow */
             transition: background-color 0.3s; /* Smooth transition for background */
+            margin-bottom: 10px; /* Space between buttons */
         }
         button:hover {
             background-color: #FF1493; /* Deeper pink on hover */
@@ -58,7 +59,7 @@
 </head>
 <body>
 
-    <h1>Music searcher</h1>
+    <h1>Music Searcher</h1>
     
     <!-- First Search Bar for TIDAL -->
     <input type="text" id="searchInputTIDAL" placeholder="Type your search for TIDAL...">
@@ -68,12 +69,19 @@
     <input type="text" id="searchInputQOBUZ" placeholder="Type your search for QOBUZ...">
     <button onclick="performSearch('QOBUZ')">Search QOBUZ</button>
 
+    <!-- Open Button -->
+    <button onclick="openLink()">Open</button>
+
     <script>
         function performSearch(service) {
             const searchQuery = service === 'TIDAL' ? document.getElementById('searchInputTIDAL').value : document.getElementById('searchInputQOBUZ').value;
             const modifiedQuery = searchQuery + " " + service;
             const searchUrl = "https://www.google.com/search?q=" + encodeURIComponent(modifiedQuery);
             window.open(searchUrl, '_blank'); // Open search in a new tab
+        }
+
+        function openLink() {
+            window.open('https://lucida.to/', '_blank'); // Open the specified link in a new tab
         }
     </script>
 
