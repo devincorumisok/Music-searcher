@@ -62,19 +62,35 @@
     <h1>Music Searcher</h1>
     
     <!-- First Search Bar for TIDAL -->
-    <input type="text" id="searchInputTIDAL" placeholder="Type your search for TIDAL...">
+    <input type="text" id="searchInputTIDAL" placeholder="Search for TIDAL...">
     <button onclick="performSearch('TIDAL')">Search TIDAL</button>
     
     <!-- Second Search Bar for QOBUZ -->
-    <input type="text" id="searchInputQOBUZ" placeholder="Type your search for QOBUZ...">
+    <input type="text" id="searchInputQOBUZ" placeholder="Search for QOBUZ...">
     <button onclick="performSearch('QOBUZ')">Search QOBUZ</button>
+
+    <!-- Third Search Bar for DEEZER -->
+    <input type="text" id="searchInputDEEZER" placeholder="Search for DEEZER...">
+    <button onclick="performSearch('DEEZER')">Search DEEZER</button>
+
+    <!-- Fourth Search Bar for YANDEX -->
+    <input type="text" id="searchInputYANDEX" placeholder="Search for YANDEX...">
+    <button onclick="performSearch('YANDEX')">Search YANDEX</button>
+
+    <!-- Fifth Search Bar for AMAZON MUSIC -->
+    <input type="text" id="searchInputAMAZON" placeholder="Search for AMAZON MUSIC...">
+    <button onclick="performSearch('AMAZON MUSIC')">Search AMAZON MUSIC</button>
 
     <!-- Open Button -->
     <button onclick="openLink()">Open</button>
 
     <script>
         function performSearch(service) {
-            const searchQuery = service === 'TIDAL' ? document.getElementById('searchInputTIDAL').value : document.getElementById('searchInputQOBUZ').value;
+            const searchQuery = service === 'TIDAL' ? document.getElementById('searchInputTIDAL').value :
+                service === 'QOBUZ' ? document.getElementById('searchInputQOBUZ').value :
+                service === 'DEEZER' ? document.getElementById('searchInputDEEZER').value :
+                service === 'YANDEX' ? document.getElementById('searchInputYANDEX').value :
+                document.getElementById('searchInputAMAZON').value; // AMAZON MUSIC input
             const modifiedQuery = searchQuery + " " + service;
             const searchUrl = "https://www.google.com/search?q=" + encodeURIComponent(modifiedQuery);
             window.open(searchUrl, '_blank'); // Open search in a new tab
