@@ -6,58 +6,80 @@
     <title>Music Searcher</title>
     <style>
         body {
-            background-color: #FFC0CB; /* Light pink background */
+            background-color: #FFC0CB;
             font-family: Arial, sans-serif;
             text-align: center;
             padding: 50px;
-            margin: 0; /* Remove default margin */
-            display: flex; /* Flexbox for centering */
-            flex-direction: column; /* Stack items vertically */
-            align-items: center; /* Center items horizontally */
-            min-height: 100vh; /* Full height for the body */
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
         }
         h1 {
-            color: #D5006D; /* Darker pink for the header */
-            margin-bottom: 30px; /* Space below the header */
+            color: #D5006D;
+            margin-bottom: 30px;
         }
         input[type="text"] {
-            padding: 12px; /* Increased padding for input */
-            font-size: 18px; /* Larger font size */
-            width: 90%; /* Full width on smaller screens */
-            max-width: 400px; /* Limit max width for larger screens */
-            margin-bottom: 15px; /* Space between the search bars */
-            border: 2px solid #D5006D; /* Border color */
-            border-radius: 5px; /* Rounded corners */
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Subtle shadow */
-            transition: border-color 0.3s; /* Smooth transition for border */
+            padding: 12px;
+            font-size: 18px;
+            width: 90%;
+            max-width: 400px;
+            margin-bottom: 15px;
+            border: 2px solid #D5006D;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            transition: border-color 0.3s;
         }
         input[type="text"]:focus {
-            border-color: #FF69B4; /* Change border color on focus */
-            outline: none; /* Remove default outline */
+            border-color: #FF69B4;
+            outline: none;
         }
         button {
-            padding: 12px 25px; /* Increased padding for button */
-            font-size: 18px; /* Larger font size */
-            background-color: #FF69B4; /* Hot pink */
+            padding: 12px 25px;
+            font-size: 18px;
+            background-color: #FF69B4;
             color: white;
             border: none;
-            border-radius: 5px; /* Rounded corners */
+            border-radius: 5px;
             cursor: pointer;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Subtle shadow */
-            transition: background-color 0.3s; /* Smooth transition for background */
-            margin-bottom: 10px; /* Space between buttons */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s;
+            margin-bottom: 10px;
         }
         button:hover {
-            background-color: #FF1493; /* Deeper pink on hover */
+            background-color: #FF1493;
         }
-        .quality {
-            font-size: 14px;
-            color: #D5006D; /* Dark pink for the ranking text */
-            margin-bottom: 10px; /* Space below the quality text */
+        .iframe-container {
+            width: 100%;
+            max-width: 1000px;
+            margin-top: 20px;
+            position: relative;
+        }
+        .iframe-container iframe {
+            width: 100%;
+            height: 600px;
+            border: 2px solid #D5006D;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .iframe-container .close-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #FF69B4;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .iframe-container .close-button:hover {
+            background-color: #FF1493;
         }
         @media (max-width: 600px) {
             input[type="text"], button {
-                width: 95%; /* Full width on smaller screens */
+                width: 95%;
             }
         }
     </style>
@@ -66,55 +88,80 @@
 
     <h1>Music Searcher</h1>
 
-    <!-- First Search Bar for QOBUZ -->
-    <input type="text" id="searchInputQOBUZ" placeholder="Search for QOBUZ...">
-    <button onclick="performSearch('QOBUZ')">Search QOBUZ</button>
-    <p class="quality">#1 High-Resolution Audio</p>
-
-    <!-- Second Search Bar for AMAZON MUSIC -->
-    <input type="text" id="searchInputAMAZON" placeholder="Search for AMAZON MUSIC...">
-    <button onclick="performSearch('AMAZON MUSIC')">Search AMAZON MUSIC</button>
-    <p class="quality">#2 HD and Ultra HD Audio</p>
-
-    <!-- Third Search Bar for DEEZER -->
-    <input type="text" id="searchInputDEEZER" placeholder="Search for DEEZER...">
-    <button onclick="performSearch('DEEZER')">Search DEEZER</button>
-    <p class="quality">#3 HiFi Lossless Audio</p>
-
-    <!-- Fourth Search Bar for SPOTIFY -->
-    <input type="text" id="searchInputSPOTIFY" placeholder="Search for SPOTIFY...">
-    <button onclick="performSearch('SPOTIFY')">Search SPOTIFY</button>
-    <p class="quality">#4 High Library, Standard Quality</p>
-
-    <!-- Fifth Search Bar for TIDAL -->
+    <!-- TIDAL Search Bar -->
     <input type="text" id="searchInputTIDAL" placeholder="Search for TIDAL...">
     <button onclick="performSearch('TIDAL')">Search TIDAL</button>
-    <p class="quality">#5 HiFi and MQA Streaming</p>
 
-    <!-- Sixth Search Bar for YANDEX -->
+    <!-- QOBUZ Search Bar -->
+    <input type="text" id="searchInputQOBUZ" placeholder="Search for QOBUZ...">
+    <button onclick="performSearch('QOBUZ')">Search QOBUZ</button>
+
+    <!-- DEEZER Search Bar -->
+    <input type="text" id="searchInputDEEZER" placeholder="Search for DEEZER...">
+    <button onclick="performSearch('DEEZER')">Search DEEZER</button>
+
+    <!-- YANDEX Search Bar -->
     <input type="text" id="searchInputYANDEX" placeholder="Search for YANDEX...">
     <button onclick="performSearch('YANDEX')">Search YANDEX</button>
-    <p class="quality">#6 Standard Quality</p>
 
-    <!-- Open Button -->
-    <button onclick="openLink()">Open</button>
+    <!-- AMAZON MUSIC Search Bar -->
+    <input type="text" id="searchInputAMAZON" placeholder="Search for AMAZON MUSIC...">
+    <button onclick="performSearch('AMAZON MUSIC')">Search AMAZON MUSIC</button>
+
+    <!-- SPOTIFY Search Bar -->
+    <input type="text" id="searchInputSPOTIFY" placeholder="Search for SPOTIFY...">
+    <button onclick="performSearch('SPOTIFY')">Search SPOTIFY</button>
+
+    <!-- Button to Add Lucida Iframe -->
+    <button onclick="addLucida()">Add Lucida Tab</button>
+
+    <!-- Container for Iframes -->
+    <div id="iframeContainer"></div>
 
     <script>
         function performSearch(service) {
-            const searchQuery = service === 'QOBUZ' ? document.getElementById('searchInputQOBUZ').value :
-                service === 'AMAZON MUSIC' ? document.getElementById('searchInputAMAZON').value :
+            const searchQuery = service === 'TIDAL' ? document.getElementById('searchInputTIDAL').value :
+                service === 'QOBUZ' ? document.getElementById('searchInputQOBUZ').value :
                 service === 'DEEZER' ? document.getElementById('searchInputDEEZER').value :
-                service === 'SPOTIFY' ? document.getElementById('searchInputSPOTIFY').value :
-                service === 'TIDAL' ? document.getElementById('searchInputTIDAL').value :
-                document.getElementById('searchInputYANDEX').value; // YANDEX input
+                service === 'YANDEX' ? document.getElementById('searchInputYANDEX').value :
+                service === 'AMAZON MUSIC' ? document.getElementById('searchInputAMAZON').value :
+                document.getElementById('searchInputSPOTIFY').value;
             const modifiedQuery = searchQuery + " " + service;
             const searchUrl = "https://www.google.com/search?q=" + encodeURIComponent(modifiedQuery);
-            window.open(searchUrl, '_blank'); // Open search in a new tab
+            window.open(searchUrl, '_blank');
         }
 
-        function openLink() {
-            window.open('https://lucida.to/', '_blank'); // Open the specified link in a new tab
+        function addLucida() {
+            const iframeContainer = document.getElementById('iframeContainer');
+            const iframeWrapper = document.createElement('div');
+            iframeWrapper.className = 'iframe-container';
+
+            const closeButton = document.createElement('button');
+            closeButton.className = 'close-button';
+            closeButton.textContent = 'Close';
+            closeButton.onclick = function() {
+                iframeWrapper.remove();
+            };
+
+            const iframe = document.createElement('iframe');
+            iframe.src = 'https://lucida.to/';
+
+            iframeWrapper.appendChild(closeButton);
+            iframeWrapper.appendChild(iframe);
+            iframeContainer.appendChild(iframeWrapper);
         }
+
+        // Function to request download permissions for multiple files
+        function requestDownloadPermission() {
+            if (!confirm("This website may need to download multiple files. Do you want to allow this?")) {
+                alert("Download permission not granted.");
+            } else {
+                alert("Download permission granted.");
+            }
+        }
+
+        // Call this function when triggering any download action
+        requestDownloadPermission();
     </script>
 
 </body>
