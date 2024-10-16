@@ -50,6 +50,11 @@
         button:hover {
             background-color: #FF1493; /* Deeper pink on hover */
         }
+        .quality {
+            font-size: 14px;
+            color: #D5006D; /* Dark pink for the ranking text */
+            margin-bottom: 10px; /* Space below the quality text */
+        }
         @media (max-width: 600px) {
             input[type="text"], button {
                 width: 95%; /* Full width on smaller screens */
@@ -60,37 +65,48 @@
 <body>
 
     <h1>Music Searcher</h1>
-    
-    <!-- First Search Bar for TIDAL -->
-    <input type="text" id="searchInputTIDAL" placeholder="Search for TIDAL...">
-    <button onclick="performSearch('TIDAL')">Search TIDAL</button>
-    
-    <!-- Second Search Bar for QOBUZ -->
+
+    <!-- First Search Bar for QOBUZ -->
     <input type="text" id="searchInputQOBUZ" placeholder="Search for QOBUZ...">
     <button onclick="performSearch('QOBUZ')">Search QOBUZ</button>
+    <p class="quality">#1 High-Resolution Audio</p>
+
+    <!-- Second Search Bar for AMAZON MUSIC -->
+    <input type="text" id="searchInputAMAZON" placeholder="Search for AMAZON MUSIC...">
+    <button onclick="performSearch('AMAZON MUSIC')">Search AMAZON MUSIC</button>
+    <p class="quality">#2 HD and Ultra HD Audio</p>
 
     <!-- Third Search Bar for DEEZER -->
     <input type="text" id="searchInputDEEZER" placeholder="Search for DEEZER...">
     <button onclick="performSearch('DEEZER')">Search DEEZER</button>
+    <p class="quality">#3 HiFi Lossless Audio</p>
 
-    <!-- Fourth Search Bar for YANDEX -->
+    <!-- Fourth Search Bar for SPOTIFY -->
+    <input type="text" id="searchInputSPOTIFY" placeholder="Search for SPOTIFY...">
+    <button onclick="performSearch('SPOTIFY')">Search SPOTIFY</button>
+    <p class="quality">#4 High Library, Standard Quality</p>
+
+    <!-- Fifth Search Bar for TIDAL -->
+    <input type="text" id="searchInputTIDAL" placeholder="Search for TIDAL...">
+    <button onclick="performSearch('TIDAL')">Search TIDAL</button>
+    <p class="quality">#5 HiFi and MQA Streaming</p>
+
+    <!-- Sixth Search Bar for YANDEX -->
     <input type="text" id="searchInputYANDEX" placeholder="Search for YANDEX...">
     <button onclick="performSearch('YANDEX')">Search YANDEX</button>
-
-    <!-- Fifth Search Bar for AMAZON MUSIC -->
-    <input type="text" id="searchInputAMAZON" placeholder="Search for AMAZON MUSIC...">
-    <button onclick="performSearch('AMAZON MUSIC')">Search AMAZON MUSIC</button>
+    <p class="quality">#6 Standard Quality</p>
 
     <!-- Open Button -->
     <button onclick="openLink()">Open</button>
 
     <script>
         function performSearch(service) {
-            const searchQuery = service === 'TIDAL' ? document.getElementById('searchInputTIDAL').value :
-                service === 'QOBUZ' ? document.getElementById('searchInputQOBUZ').value :
+            const searchQuery = service === 'QOBUZ' ? document.getElementById('searchInputQOBUZ').value :
+                service === 'AMAZON MUSIC' ? document.getElementById('searchInputAMAZON').value :
                 service === 'DEEZER' ? document.getElementById('searchInputDEEZER').value :
-                service === 'YANDEX' ? document.getElementById('searchInputYANDEX').value :
-                document.getElementById('searchInputAMAZON').value; // AMAZON MUSIC input
+                service === 'SPOTIFY' ? document.getElementById('searchInputSPOTIFY').value :
+                service === 'TIDAL' ? document.getElementById('searchInputTIDAL').value :
+                document.getElementById('searchInputYANDEX').value; // YANDEX input
             const modifiedQuery = searchQuery + " " + service;
             const searchUrl = "https://www.google.com/search?q=" + encodeURIComponent(modifiedQuery);
             window.open(searchUrl, '_blank'); // Open search in a new tab
