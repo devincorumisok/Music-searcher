@@ -19,13 +19,13 @@
         h1 {
             color: #D5006D;
             margin-bottom: 20px;
-            font-size: 32px; /* Increased font size for the header */
+            font-size: 32px;
         }
         input[type="text"] {
-            padding: 16px; /* Increased padding for input */
-            font-size: 20px; /* Increased font size for input */
+            padding: 16px;
+            font-size: 20px;
             width: 90%;
-            max-width: 600px; /* Increased max width for desktop */
+            max-width: 600px;
             margin-bottom: 15px;
             border: 2px solid #D5006D;
             border-radius: 5px;
@@ -37,8 +37,8 @@
             outline: none;
         }
         button {
-            padding: 16px 24px; /* Increased button padding */
-            font-size: 20px; /* Increased font size for button */
+            padding: 16px 24px;
+            font-size: 20px;
             background-color: #FF69B4;
             color: white;
             border: none;
@@ -53,13 +53,13 @@
         }
         .iframe-container {
             width: 100%;
-            max-width: 1200px; /* General max width for desktop */
+            max-width: 1200px;
             margin-top: 20px;
             position: relative;
         }
         .iframe-container iframe {
             width: 100%;
-            height: 800px; /* General height for desktop */
+            height: 800px;
             border: 2px solid #D5006D;
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -79,13 +79,13 @@
             background-color: #FF1493;
         }
         .service-description {
-            font-size: 16px; /* Increased font size for description */
+            font-size: 16px;
             color: #333;
             background-color: #FFF0F5;
-            padding: 16px; /* Increased padding for description */
+            padding: 16px;
             border-radius: 5px;
             margin-bottom: 15px;
-            max-width: 600px; /* Adjusted max width for description */
+            max-width: 600px;
             text-align: left;
         }
         @media (max-width: 600px) {
@@ -94,13 +94,12 @@
             }
         }
         @media (min-width: 601px) {
-            /* Additional styles for larger screens */
             input[type="text"], button {
-                width: 70%; /* Wider inputs and buttons for desktop */
+                width: 70%;
             }
             .iframe-container iframe {
-                width: 1200px; /* Wider iframe for desktop */
-                height: 900px; /* Longer iframe for desktop */
+                width: 1200px;
+                height: 900px;
             }
         }
     </style>
@@ -121,14 +120,14 @@
         <strong>QOBUZ:</strong> Supports Hi-Res audio (FLAC, up to 24-bit/192kHz). Known for offering lossless audio streaming and downloadable tracks.
     </div>
     <input type="text" id="searchInputQOBUZ" placeholder="Search for QOBUZ...">
-    <button onclick="performSearch('QOBUZ')">Search QOBUZ</button>
+    <button onclick="performSearchQOBUZ()">Search QOBUZ</button>
 
     <!-- DEEZER Section -->
     <div class="service-description">
         <strong>DEEZER:</strong> Provides CD-quality (FLAC, 16-bit/44.1kHz) with their HiFi plan. Offers a wide variety of music at standard quality on other plans.
     </div>
     <input type="text" id="searchInputDEEZER" placeholder="Search for DEEZER...">
-    <button onclick="performSearch('DEEZER')">Search DEEZER</button>
+    <button onclick="performSearchDEEZER()">Search DEEZER</button>
 
     <!-- YANDEX Section -->
     <div class="service-description">
@@ -142,14 +141,14 @@
         <strong>AMAZON MUSIC:</strong> Offers HD (16-bit/44.1kHz) and Ultra HD (up to 24-bit/192kHz) streaming for better audio quality.
     </div>
     <input type="text" id="searchInputAMAZON" placeholder="Search for AMAZON MUSIC...">
-    <button onclick="performSearch('AMAZON MUSIC')">Search AMAZON MUSIC</button>
+    <button onclick="performSearchAMAZON()">Search AMAZON MUSIC</button>
 
     <!-- SPOTIFY Section -->
     <div class="service-description">
         <strong>SPOTIFY:</strong> Currently offers up to 320kbps in OGG format. Lossless streaming is planned but not yet available.
     </div>
     <input type="text" id="searchInputSPOTIFY" placeholder="Search for SPOTIFY...">
-    <button onclick="performSearch('SPOTIFY')">Search SPOTIFY</button>
+    <button onclick="performSearchSPOTIFY()">Search SPOTIFY</button>
 
     <!-- Button to Add Lucida Iframe -->
     <button onclick="addLucida()">Add Lucida Tab</button>
@@ -160,13 +159,34 @@
     <script>
         function performSearch(service) {
             const searchQuery = service === 'TIDAL' ? document.getElementById('searchInputTIDAL').value :
-                service === 'QOBUZ' ? document.getElementById('searchInputQOBUZ').value :
-                service === 'DEEZER' ? document.getElementById('searchInputDEEZER').value :
                 service === 'YANDEX' ? document.getElementById('searchInputYANDEX').value :
-                service === 'AMAZON MUSIC' ? document.getElementById('searchInputAMAZON').value :
                 document.getElementById('searchInputSPOTIFY').value;
-            const modifiedQuery = searchQuery + " " + service;
+            const modifiedQuery = service === 'TIDAL' ? searchQuery.toUpperCase() + " TIDAL" : searchQuery + " " + service;
             const searchUrl = "https://www.google.com/search?q=" + encodeURIComponent(modifiedQuery);
+            window.open(searchUrl, '_blank');
+        }
+
+        function performSearchQOBUZ() {
+            const searchQuery = document.getElementById('searchInputQOBUZ').value;
+            const searchUrl = "https://www.qobuz.com/us-en/search/albums/" + encodeURIComponent(searchQuery);
+            window.open(searchUrl, '_blank');
+        }
+
+        function performSearchDEEZER() {
+            const searchQuery = document.getElementById('searchInputDEEZER').value;
+            const searchUrl = "https://www.deezer.com/search/" + encodeURIComponent(searchQuery);
+            window.open(searchUrl, '_blank');
+        }
+
+        function performSearchAMAZON() {
+            const searchQuery = document.getElementById('searchInputAMAZON').value;
+            const searchUrl = "https://music.amazon.com/search/" + encodeURIComponent(searchQuery);
+            window.open(searchUrl, '_blank');
+        }
+
+        function performSearchSPOTIFY() {
+            const searchQuery = document.getElementById('searchInputSPOTIFY').value;
+            const searchUrl = "https://open.spotify.com/search/results/" + encodeURIComponent(searchQuery);
             window.open(searchUrl, '_blank');
         }
 
@@ -182,22 +202,14 @@
                 iframeWrapper.remove();
             };
 
-            const iframe = document.createElement('iframe');
-            iframe.src = 'https://lucida.to/';
             iframeWrapper.appendChild(closeButton);
+
+            const iframe = document.createElement('iframe');
+            iframe.src = 'https://example.com'; // Replace with your desired URL
             iframeWrapper.appendChild(iframe);
+
             iframeContainer.appendChild(iframeWrapper);
         }
-
-        function requestDownloadPermission() {
-            if (!confirm("This website may need to download multiple files. Do you want to allow this?")) {
-                alert("Download permission not granted.");
-            } else {
-                alert("Download permission granted.");
-            }
-        }
-
-        requestDownloadPermission();
     </script>
 
 </body>
