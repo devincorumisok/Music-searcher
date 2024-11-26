@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Music Searcher</title>
     <style>
+        /* Global styles */
         body {
             background-color: #FFC0CB;
             font-family: Arial, sans-serif;
@@ -16,47 +17,69 @@
             align-items: center;
             min-height: 100vh;
         }
+
         h1 {
             color: #D5006D;
             margin-bottom: 20px;
             font-size: 32px;
         }
+
+        /* Input and button styles */
         input[type="text"] {
-            padding: 10px;
+            padding: 12px;
             font-size: 16px;
-            width: 75%;
-            max-width: 500px;
-            margin-bottom: 10px;
+            width: 80%;
+            max-width: 600px;
+            margin-bottom: 4px; /* Reduced margin to bring buttons closer */
             border: 2px solid #D5006D;
-            border-radius: 5px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
             transition: border-color 0.3s;
         }
+
         input[type="text"]:focus {
             border-color: #FF69B4;
             outline: none;
         }
+
         button {
-            padding: 10px 20px;
+            padding: 12px 20px;
             font-size: 16px;
             background-color: #FF69B4;
             color: white;
             border: none;
-            border-radius: 5px;
+            border-radius: 8px;
             cursor: pointer;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
             transition: background-color 0.3s;
-            margin: 5px;
+            margin-top: 4px; /* Reduced margin to make buttons even closer */
         }
+
         button:hover {
             background-color: #FF1493;
         }
+
+        /* Service description styles */
+        .service-description {
+            font-size: 14px;
+            color: #333;
+            background-color: #FFF0F5;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 8px; /* Reduced margin to bring descriptions closer to input */
+            max-width: 600px;
+            text-align: left;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Iframe container */
         .iframe-container {
             width: 100%;
             max-width: 1200px;
             margin-top: 20px;
             position: relative;
         }
+
         .iframe-container iframe {
             width: 100%;
             height: 800px;
@@ -64,6 +87,7 @@
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
+
         .iframe-container .close-button {
             position: absolute;
             top: 10px;
@@ -75,22 +99,72 @@
             cursor: pointer;
             border-radius: 5px;
         }
+
         .iframe-container .close-button:hover {
             background-color: #FF1493;
         }
-        .service-description {
-            font-size: 14px;
-            color: #333;
-            background-color: #FFF0F5;
-            padding: 10px;
-            border-radius: 5px;
-            margin-bottom: 10px;
-            max-width: 600px;
-            text-align: left;
-        }
-        @media (max-width: 600px) {
+
+        /* Desktop Layout */
+        @media (min-width: 769px) {
             input[type="text"], button {
-                width: 90%;
+                width: 50%; /* Increased width for desktop */
+                font-size: 18px;
+                padding: 14px;
+            }
+
+            .service-description {
+                max-width: 600px;
+                font-size: 16px;
+                padding: 16px;
+            }
+
+            h1 {
+                font-size: 36px; /* Larger heading for desktop */
+            }
+
+            /* Make iframe container larger */
+            .iframe-container iframe {
+                height: 800px;
+            }
+
+            /* Reduce padding and margin for better alignment */
+            body {
+                padding: 40px;
+            }
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            input[type="text"], button {
+                width: 90%; /* Compress input fields and buttons for mobile */
+                padding: 10px;
+                font-size: 14px;
+            }
+
+            .service-description {
+                max-width: 90%;
+                font-size: 12px;
+                padding: 10px;
+            }
+
+            h1 {
+                font-size: 24px;
+            }
+
+            /* Adjust button spacing for smaller screens */
+            button {
+                padding: 10px 15px;
+                margin-top: 6px;
+            }
+
+            /* Make iframe container smaller and adjust margins */
+            .iframe-container iframe {
+                height: 600px;
+            }
+
+            /* Reduce margins and paddings */
+            body {
+                padding: 15px;
             }
         }
     </style>
@@ -153,14 +227,6 @@
     <button onclick="addLucida()">Open Lucida</button>
 
     <script>
-        // Prompt to allow multiple file downloads
-        window.onload = function() {
-            const userConsent = confirm("Hey, do you want to allow multiple file downloads?");
-            if (!userConsent) {
-                alert("You may need to adjust your browser settings to allow multiple downloads.");
-            }
-        };
-
         function performSearch(service) {
             const searchQuery = service === 'TIDAL' ? document.getElementById('searchInputTIDAL').value :
                 service === 'QOBUZ' ? document.getElementById('searchInputQOBUZ').value :
@@ -187,16 +253,17 @@
                 case 'AMAZON MUSIC':
                     searchUrl = "https://music.amazon.com/search/" + encodeURIComponent(searchQuery);
                     break;
-                case 'BEATPORT':
-                    searchUrl = "https://www.beatport.com/search?q=" + encodeURIComponent(searchQuery);
-                    break;
                 case 'SPOTIFY':
                     searchUrl = "https://open.spotify.com/search/results/" + encodeURIComponent(searchQuery);
+                    break;
+                case 'BEATPORT':
+                    searchUrl = "https://www.beatport.com/search?q=" + encodeURIComponent(searchQuery);
                     break;
                 default:
                     searchUrl = "https://www.google.com/search?q=" + encodeURIComponent(searchQuery + " " + service);
             }
 
+            // Open the search results page in a new tab
             window.open(searchUrl, '_blank');
         }
 
