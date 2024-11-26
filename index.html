@@ -22,14 +22,14 @@
             font-size: 32px;
         }
         input[type="text"] {
-            padding: 16px;
-            font-size: 20px;
-            width: 90%;
-            max-width: 600px;
-            margin-bottom: 15px;
+            padding: 10px;
+            font-size: 16px;
+            width: 75%;
+            max-width: 500px;
+            margin-bottom: 10px;
             border: 2px solid #D5006D;
             border-radius: 5px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
             transition: border-color 0.3s;
         }
         input[type="text"]:focus {
@@ -37,16 +37,16 @@
             outline: none;
         }
         button {
-            padding: 16px 24px;
-            font-size: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
             background-color: #FF69B4;
             color: white;
             border: none;
             border-radius: 5px;
             cursor: pointer;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
             transition: background-color 0.3s;
-            margin-bottom: 12px;
+            margin: 5px;
         }
         button:hover {
             background-color: #FF1493;
@@ -79,27 +79,18 @@
             background-color: #FF1493;
         }
         .service-description {
-            font-size: 16px;
+            font-size: 14px;
             color: #333;
             background-color: #FFF0F5;
-            padding: 16px;
+            padding: 10px;
             border-radius: 5px;
-            margin-bottom: 15px;
+            margin-bottom: 10px;
             max-width: 600px;
             text-align: left;
         }
         @media (max-width: 600px) {
             input[type="text"], button {
-                width: 95%;
-            }
-        }
-        @media (min-width: 601px) {
-            input[type="text"], button {
-                width: 70%;
-            }
-            .iframe-container iframe {
-                width: 1200px;
-                height: 900px;
+                width: 90%;
             }
         }
     </style>
@@ -110,49 +101,49 @@
 
     <!-- TIDAL Section -->
     <div class="service-description">
-        <strong>TIDAL:</strong> Offers HiFi (FLAC, 16-bit/44.1kHz) and Hi-Res (MQA, up to 24-bit/192kHz) audio. Known for high-quality streaming and lossless audio options.
+        <strong>TIDAL:</strong> HiFi (16-bit/44.1kHz) and Hi-Res (up to 24-bit/192kHz).
     </div>
     <input type="text" id="searchInputTIDAL" placeholder="Search for TIDAL...">
     <button onclick="performSearch('TIDAL')">Search TIDAL</button>
 
     <!-- QOBUZ Section -->
     <div class="service-description">
-        <strong>QOBUZ:</strong> Supports Hi-Res audio (FLAC, up to 24-bit/192kHz). Known for offering lossless audio streaming and downloadable tracks.
+        <strong>QOBUZ:</strong> Hi-Res (FLAC, up to 24-bit/192kHz).
     </div>
     <input type="text" id="searchInputQOBUZ" placeholder="Search for QOBUZ...">
     <button onclick="performSearch('QOBUZ')">Search QOBUZ</button>
 
     <!-- DEEZER Section -->
     <div class="service-description">
-        <strong>DEEZER:</strong> Provides CD-quality (FLAC, 16-bit/44.1kHz) with their HiFi plan. Offers a wide variety of music at standard quality on other plans.
+        <strong>DEEZER:</strong> CD quality (FLAC, 16-bit/44.1kHz).
     </div>
     <input type="text" id="searchInputDEEZER" placeholder="Search for DEEZER...">
     <button onclick="performSearch('DEEZER')">Search DEEZER</button>
 
     <!-- YANDEX Section -->
     <div class="service-description">
-        <strong>YANDEX:</strong> Provides a large music library with various streaming options and downloadable music. Known for its integration with Yandex services.
+        <strong>YANDEX:</strong> Standard and high-quality audio available.
     </div>
     <input type="text" id="searchInputYANDEX" placeholder="Search for YANDEX...">
     <button onclick="performSearch('YANDEX')">Search YANDEX</button>
 
     <!-- AMAZON MUSIC Section -->
     <div class="service-description">
-        <strong>AMAZON MUSIC:</strong> Offers a wide selection of music streaming, including HD and Ultra HD audio options for high-fidelity listening.
+        <strong>AMAZON MUSIC:</strong> HD and Ultra HD (up to 24-bit/192kHz).
     </div>
     <input type="text" id="searchInputAMAZON" placeholder="Search for AMAZON MUSIC...">
     <button onclick="performSearch('AMAZON MUSIC')">Search AMAZON MUSIC</button>
 
     <!-- SPOTIFY Section -->
     <div class="service-description">
-        <strong>SPOTIFY:</strong> Known for its vast library and personalized playlists. Offers both free (ad-supported) and premium subscription options.
+        <strong>SPOTIFY:</strong> Standard streaming quality, up to 320 kbps.
     </div>
     <input type="text" id="searchInputSPOTIFY" placeholder="Search for SPOTIFY...">
     <button onclick="performSearch('SPOTIFY')">Search SPOTIFY</button>
 
     <!-- BEATPORT Section -->
     <div class="service-description">
-        <strong>BEATPORT:</strong> The go-to platform for DJs and electronic music enthusiasts, offering tracks in high-quality formats like WAV and AIFF.
+        <strong>BEATPORT:</strong> High-quality audio for electronic music (formats vary).
     </div>
     <input type="text" id="searchInputBEATPORT" placeholder="Search for BEATPORT...">
     <button onclick="performSearch('BEATPORT')">Search BEATPORT</button>
@@ -162,6 +153,7 @@
     <button onclick="addLucida()">Open Lucida</button>
 
     <script>
+        // Prompt to allow multiple file downloads
         window.onload = function() {
             const userConsent = confirm("Hey, do you want to allow multiple file downloads?");
             if (!userConsent) {
