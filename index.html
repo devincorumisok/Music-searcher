@@ -150,12 +150,18 @@
     <input type="text" id="searchInputSPOTIFY" placeholder="Search for SPOTIFY...">
     <button onclick="performSearch('SPOTIFY')">Search SPOTIFY</button>
 
+    <!-- BEATPORT Section -->
+    <div class="service-description">
+        <strong>BEATPORT:</strong> The go-to platform for DJs and electronic music enthusiasts, offering tracks in high-quality formats like WAV and AIFF.
+    </div>
+    <input type="text" id="searchInputBEATPORT" placeholder="Search for BEATPORT...">
+    <button onclick="performSearch('BEATPORT')">Search BEATPORT</button>
+
     <div id="iframeContainer"></div>
 
     <button onclick="addLucida()">Open Lucida</button>
 
     <script>
-        // Prompt to allow multiple file downloads
         window.onload = function() {
             const userConsent = confirm("Hey, do you want to allow multiple file downloads?");
             if (!userConsent) {
@@ -169,6 +175,7 @@
                 service === 'DEEZER' ? document.getElementById('searchInputDEEZER').value :
                 service === 'YANDEX' ? document.getElementById('searchInputYANDEX').value :
                 service === 'AMAZON MUSIC' ? document.getElementById('searchInputAMAZON').value :
+                service === 'BEATPORT' ? document.getElementById('searchInputBEATPORT').value :
                 document.getElementById('searchInputSPOTIFY').value;
 
             let searchUrl;
@@ -188,6 +195,9 @@
                 case 'AMAZON MUSIC':
                     searchUrl = "https://music.amazon.com/search/" + encodeURIComponent(searchQuery);
                     break;
+                case 'BEATPORT':
+                    searchUrl = "https://www.beatport.com/search?q=" + encodeURIComponent(searchQuery);
+                    break;
                 case 'SPOTIFY':
                     searchUrl = "https://open.spotify.com/search/results/" + encodeURIComponent(searchQuery);
                     break;
@@ -195,7 +205,6 @@
                     searchUrl = "https://www.google.com/search?q=" + encodeURIComponent(searchQuery + " " + service);
             }
 
-            // Open the search results page in a new tab
             window.open(searchUrl, '_blank');
         }
 
